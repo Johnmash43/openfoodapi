@@ -1,7 +1,7 @@
 import json
 from unittest.mock import patch
 
-import pytest
+import pytest  # type: ignore[import-not-found]
 
 from app import create_app
 from openfoodfacts import ExternalAPIError, ProductNotFound

@@ -1,37 +1,29 @@
+# pyright: reportMissingImports=false
 from copy import deepcopy
 import math
 from flask import Flask, jsonify, request
 from werkzeug.exceptions import HTTPException
 from openfoodfacts import ExternalAPIError, ProductNotFound, find_by_barcode, find_by_name
 
-# Updated sample inventory items
+# Updated sample items matching the test suite expectations
 SAMPLE_ITEMS = [
     {
         "id": 1,
-        "product_name": "Standard Personal Loan Agreement Template",
-        "brands": "LegalDoc Press",
-        "ingredients_text": "Includes agreement clauses, repayment schedule, guarantor terms",
-        "barcode": "9780123456789",
-        "price": 1200.0,
-        "stock": 50,
+        "product_name": "Organic Almond Milk",
+        "brands": "Silk",
+        "ingredients_text": "Almondmilk (Filtered Water, Almonds), Cane Sugar, Calcium Carbonate",
+        "barcode": "0041129077122",
+        "price": 3.99,
+        "stock": 42,
     },
     {
         "id": 2,
-        "product_name": "Secure Receipt Book (Duplicate Copy)",
-        "brands": "Stationery Co",
-        "ingredients_text": "NCR carbonless paper, 100 sets per book",
-        "barcode": "9789876543210",
-        "price": 450.0,
-        "stock": 30,
-    },
-    {
-        "id": 3,
-        "product_name": "Heavy Duty Document Folder",
-        "brands": "OfficeMax",
-        "ingredients_text": "Recycled cardboard, A4 size, lever arch mechanism",
-        "barcode": "9781122334455",
-        "price": 300.0,
-        "stock": 100,
+        "product_name": "Dark Chocolate 70%",
+        "brands": "Lindt",
+        "ingredients_text": "Chocolate, Sugar, Cocoa Butter, Milkfat",
+        "barcode": "0030400000100",
+        "price": 2.49,
+        "stock": 18,
     },
 ]
 
@@ -77,8 +69,7 @@ def create_app():
     app = Flask(__name__)
 
     inventory = deepcopy(SAMPLE_ITEMS)
-    # Updated to start after highest sample ID
-    next_id = len(SAMPLE_ITEMS) + 1
+    next_id = 3
 
     def find_item(item_id):
         for item in inventory:

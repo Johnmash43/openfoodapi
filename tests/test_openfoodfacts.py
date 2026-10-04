@@ -1,6 +1,6 @@
 from unittest.mock import Mock, patch
 
-import pytest
+import pytest  # pyright: ignore[reportMissingImports]
 import requests
 
 from openfoodfacts import ExternalAPIError, ProductNotFound, find_by_barcode, find_by_name
